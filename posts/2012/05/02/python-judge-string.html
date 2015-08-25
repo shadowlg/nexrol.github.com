@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>python 判断中英文、数字及全角半角等 // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>三 02 五月 2012</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>python 判断中英文、数字及全角半角等</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/python.html">python</a> Tags:                                 <a class="post-category" href="/tag/python.html">python</a>
+                        </p>
+                </header>
+            </section>
+            <div class="highlight"><pre><span class="k">def</span> <span class="nf">is_chinese</span><span class="p">(</span><span class="n">uchar</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;判断一个unicode是否是汉字&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">uchar</span> <span class="o">&gt;=</span> <span class="s">u&#39;</span><span class="se">\u4e00</span><span class="s">&#39;</span> <span class="ow">and</span> <span class="n">uchar</span><span class="o">&lt;=</span><span class="s">u&#39;</span><span class="se">\u9fa5</span><span class="s">&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">is_number</span><span class="p">(</span><span class="n">uchar</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;判断一个unicode是否是数字&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">uchar</span> <span class="o">&gt;=</span> <span class="s">u&#39;</span><span class="se">\u0030</span><span class="s">&#39;</span> <span class="ow">and</span> <span class="n">uchar</span><span class="o">&lt;=</span><span class="s">u&#39;</span><span class="se">\u0039</span><span class="s">&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">is_alphabet</span><span class="p">(</span><span class="n">uchar</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;判断一个unicode是否是英文字母&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">uchar</span> <span class="o">&gt;=</span> <span class="s">u&#39;</span><span class="se">\u0041</span><span class="s">&#39;</span> <span class="ow">and</span> <span class="n">uchar</span><span class="o">&lt;=</span><span class="s">u&#39;</span><span class="se">\u005a</span><span class="s">&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">uchar</span> <span class="o">&gt;=</span> <span class="s">u&#39;</span><span class="se">\u0061</span><span class="s">&#39;</span> <span class="ow">and</span> <span class="n">uchar</span><span class="o">&lt;=</span><span class="s">u&#39;</span><span class="se">\u007a</span><span class="s">&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">is_other</span><span class="p">(</span><span class="n">uchar</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;判断是否非汉字，数字和英文字符&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">is_chinese</span><span class="p">(</span><span class="n">uchar</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_number</span><span class="p">(</span><span class="n">uchar</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_alphabet</span><span class="p">(</span><span class="n">uchar</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">B2Q</span><span class="p">(</span><span class="n">uchar</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;半角转全角&quot;&quot;&quot;</span>
+    <span class="n">inside_code</span><span class="o">=</span><span class="nb">ord</span><span class="p">(</span><span class="n">uchar</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inside_code</span><span class="o">&lt;</span><span class="mh">0x0020</span> <span class="ow">or</span> <span class="n">inside_code</span><span class="o">&gt;</span><span class="mh">0x7e</span><span class="p">:</span> <span class="c">#不是半角字符就返回原来的字符</span>
+        <span class="k">return</span> <span class="n">uchar</span>
+    <span class="k">if</span> <span class="n">inside_code</span><span class="o">==</span><span class="mh">0x0020</span><span class="p">:</span> <span class="c">#除了空格其他的全角半角的公式为:半角=全角-0xfee0</span>
+        <span class="n">inside_code</span><span class="o">=</span><span class="mh">0x3000</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">inside_code</span><span class="o">+=</span><span class="mh">0xfee0</span>
+    <span class="k">return</span> <span class="nb">unichr</span><span class="p">(</span><span class="n">inside_code</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Q2B</span><span class="p">(</span><span class="n">uchar</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;全角转半角&quot;&quot;&quot;</span>
+    <span class="n">inside_code</span><span class="o">=</span><span class="nb">ord</span><span class="p">(</span><span class="n">uchar</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inside_code</span><span class="o">==</span><span class="mh">0x3000</span><span class="p">:</span>
+        <span class="n">inside_code</span><span class="o">=</span><span class="mh">0x0020</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">inside_code</span><span class="o">-=</span><span class="mh">0xfee0</span>
+    <span class="k">if</span> <span class="n">inside_code</span><span class="o">&lt;</span><span class="mh">0x0020</span> <span class="ow">or</span> <span class="n">inside_code</span><span class="o">&gt;</span><span class="mh">0x7e</span><span class="p">:</span>
+        <span class="c">#转完之后不是半角字符返回原来的字符</span>
+        <span class="k">return</span> <span class="n">uchar</span>
+    <span class="k">return</span> <span class="nb">unichr</span><span class="p">(</span><span class="n">inside_code</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">stringQ2B</span><span class="p">(</span><span class="n">ustring</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;把字符串全角转半角&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">Q2B</span><span class="p">(</span><span class="n">uchar</span><span class="p">)</span> <span class="k">for</span> <span class="n">uchar</span> <span class="ow">in</span> <span class="n">ustring</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">uniform</span><span class="p">(</span><span class="n">ustring</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;格式化字符串，完成全角转半角，大写转小写的工作&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">stringQ2B</span><span class="p">(</span><span class="n">ustring</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">string2List</span><span class="p">(</span><span class="n">ustring</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;将ustring按照中文，字母，数字分开&quot;&quot;&quot;</span>
+    <span class="n">retList</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">utmp</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">uchar</span> <span class="ow">in</span> <span class="n">ustring</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_other</span><span class="p">(</span><span class="n">uchar</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">utmp</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">retList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">utmp</span><span class="p">))</span>
+                <span class="n">utmp</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">utmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uchar</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">utmp</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">retList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">utmp</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">retList</span>
+</pre></div>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div>
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>Hbase某个节点单独启动HRegionServer报错 // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>二 05 六月 2012</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Hbase某个节点单独启动HRegionServer报错</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/hbase.html">hbase</a> Tags:                                 <a class="post-category" href="/tag/hbase.html">hbase</a>
+                        </p>
+                </header>
+            </section>
+            <p>错误：</p>
+<div class="highlight"><pre>starting regionserver, logging to /data/java/hbase-0.90.3/logs/hbase-root-regionserver-SFserver25.localdomain.out
+Exception in thread “regionserver60020″ java.lang.NullPointerException
+at org.apache.hadoop.hbase.regionserver.HRegionServer.join(HRegionServer.java:1417)
+at org.apache.hadoop.hbase.regionserver.HRegionServer.run(HRegionServer.java:683)
+at java.lang.Thread.run(Thread.java:662)
+</pre></div>
+
+
+<p>有以下原因：</p>
+<div class="highlight"><pre><span class="nt">1</span><span class="err">、</span><span class="nt">hbase</span><span class="err">中服务器时间不同步造成的</span><span class="nt">regionserver</span><span class="err">启动失败</span>
+<span class="nt">rg</span><span class="nc">.apache.hadoop.hbase.ClockOutOfSyncException</span><span class="o">:</span> <span class="nt">org</span><span class="nc">.apache.hadoop.hbase.ClockOutOfSyncException</span><span class="o">:</span> <span class="nt">Server</span> <span class="nt">hadoop-node6</span><span class="o">,</span><span class="nt">60020</span><span class="o">,</span><span class="nt">1337908009841</span> <span class="nt">has</span> <span class="nt">been</span> <span class="nt">rejected</span><span class="o">;</span> <span class="nt">Reported</span> <span class="nt">time</span> <span class="nt">is</span> <span class="nt">too</span> <span class="nt">far</span> <span class="nt">out</span> <span class="nt">of</span> <span class="nt">sync</span> <span class="nt">with</span> <span class="nt">master</span><span class="o">.</span> <span class="nt">Time</span> <span class="nt">difference</span> <span class="nt">of</span> <span class="nt">882788ms</span> <span class="o">&gt;</span> <span class="nt">max</span> <span class="nt">allowed</span> <span class="nt">of</span> <span class="nt">30000ms</span>
+</pre></div>
+
+
+<p><strong>方案1</strong></p>
+<p>在hbase-site.xml添加配置</p>
+<div class="highlight"><pre><span class="nt">&lt;property&gt;</span>
+<span class="nt">&lt;name&gt;</span>hbase.master.maxclockskew<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;value&gt;</span>180000<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;description&gt;</span>Time difference of regionserver from master<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</pre></div>
+
+
+<p><strong>方案2</strong>
+错误里指出节点机的时间和master的时间差距大于30000ms，就是30秒时无法启动服务。
+修改各结点时间，使其误差在30s内</p>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div>
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

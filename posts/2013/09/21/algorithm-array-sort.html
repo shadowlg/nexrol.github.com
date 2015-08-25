@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>数组里的正负数排序 // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>六 21 九月 2013</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>数组里的正负数排序</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/algorithm.html">algorithm</a> Tags:                                 <a class="post-category" href="/tag/algorithm.html">algorithm</a>
+                                <a class="post-category" href="/tag/python.html">python</a>
+                                <a class="post-category" href="/tag/mian-shi-ti.html">面试题</a>
+                        </p>
+                </header>
+            </section>
+            <p>将数组里的负数排在数组的前面，正数排在数组的后面。但不改变原先负数和正数的排列顺序。例：input: -5，2，-3, 4，-8，-9, 1, 3，-10；output: -5, -3, -8, -9, -10, 2, 4, 1, 3。</p>
+<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="k">print</span> <span class="err">“</span><span class="n">before</span><span class="err">——</span><span class="o">-</span><span class="err">”</span> <span class="p">,</span> <span class="n">a</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">count</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
+                    <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">a</span><span class="p">[</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+<span class="k">print</span> <span class="err">“</span><span class="n">later</span><span class="err">———”</span> <span class="p">,</span> <span class="n">a</span>
+</pre></div>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div>
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

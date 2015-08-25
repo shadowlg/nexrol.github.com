@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>hadoop namenode启动不起来解决方法 // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>一 22 十月 2012</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>hadoop namenode启动不起来解决方法</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/hadoop.html">hadoop</a> Tags:                                 <a class="post-category" href="/tag/hadoop.html">hadoop</a>
+                        </p>
+                </header>
+            </section>
+            <p>放假回来，发现集群不工作了，namenode已不再，查看日志：</p>
+<div class="highlight"><pre>2012-10-22 11:00:48,234 ERROR org.apache.hadoop.hdfs.server.namenode.NameNode: java.lang.NumberFormatException: For input string: “”
+at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+at java.lang.Integer.parseInt(Integer.java:470)
+at java.lang.Short.parseShort(Short.java:120)
+at java.lang.Short.parseShort(Short.java:78)
+at org.apache.hadoop.hdfs.server.namenode.FSEditLog.readShort(FSEditLog.java:1311)
+at org.apache.hadoop.hdfs.server.namenode.FSEditLog.loadFSEdits(FSEditLog.java:541)
+at org.apache.hadoop.hdfs.server.namenode.FSImage.loadFSEdits(FSImage.java:1011)
+at org.apache.hadoop.hdfs.server.namenode.FSImage.loadFSImage(FSImage.java:826)
+at org.apache.hadoop.hdfs.server.namenode.FSImage.recoverTransitionRead(FSImage.java:364)
+at org.apache.hadoop.hdfs.server.namenode.FSDirectory.loadFSImage(FSDirectory.java:87)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.initialize(FSNamesystem.java:315)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.(FSNamesystem.java:296)
+at org.apache.hadoop.hdfs.server.namenode.NameNode.initialize(NameNode.java:205)
+at org.apache.hadoop.hdfs.server.namenode.NameNode.(NameNode.java:283)
+at org.apache.hadoop.hdfs.server.namenode.NameNode.createNameNode(NameNode.java:986)
+at org.apache.hadoop.hdfs.server.namenode.NameNode.main(NameNode.java:995)
+
+2012-10-22 11:00:48,236 INFO org.apache.hadoop.hdfs.server.namenode.NameNode: SHUTDOWN_MSG:
+</pre></div>
+
+
+<p>大概是因为，首先是主节点的磁盘没空间了，建议先把集群各节点的剩余空间看下，最好有定时清理的程序。
+腾出空间后，再重新启动，仍然有问题。那么，就有可能是namenode的资料有损了，到dfs.name.dir目录下查看一下，比较一下image中fsimage和current中fsimage的大小，将前面的拷进后面的替换掉（做好备份），再试试。
+如果还不行，看你是否有这只secondarynamenode，如果有，将里面的文件覆盖掉dfs.name.dir下的，重新启动试试。
+再不行的话，网上说是把namenode的current中所有文件备份好，然后格式化namenode，然后把备份的image拷贝回来，重启namenode所有服务后，</p>
+<div class="highlight"><pre>./bin/start-balancer.sh
+</pre></div>
+
+
+<p>就一切OK了。但是我怕hbase里的数据会丢失。
+于是再找，发现一个方法竟然可行，具体原因也不是很明白</p>
+<div class="highlight"><pre>Could you backup your edits file, try $ printf “\xff\xff\xff\xee\xff” &gt;
+edits, and start HDFS？ It should work.
+</pre></div>
+
+
+<p>就是把原来的edits备份下，再新的空的edits下写入上面的内容（注意要在新的空的文件下，不然我试过还是会有问题出现），然后，重启hadoop，问题解决！</p>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div>
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

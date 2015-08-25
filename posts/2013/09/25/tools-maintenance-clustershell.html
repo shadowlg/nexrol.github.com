@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>clustershell // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>三 25 九月 2013</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>clustershell</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/tools.html">tools</a> Tags:                                 <a class="post-category" href="/tag/yun-wei.html">运维</a>
+                        </p>
+                </header>
+            </section>
+            <p>之前做vps状态监控的时候注意到了这个小工具，但是需求不同，也就没有使用，有空我再来说说那一个。</p>
+<p>这次的需求又不同了，vps空间相对都是比较小的，我们的程序时间久了会留下很多日志文件占用大量空间，因此需要定时清理。因此，使用这个小工具就不需要在每台vps布置，设置定时任务了。</p>
+<p>直接从已写好的地方般过来了，所以将就看看，希望能帮到大家。</p>
+<p><strong>clustershell</strong></p>
+<blockquote>
+<p>ClusterShell is an event-based Python library to execute commands on local or distant cluster nodes in parallel depending on the selected engine and worker mechanisms. The library provides advanced node sets and node groups handling methods. Its goal is to improve the administration of cluster by providing a lightweight but scalable API for developers. Also, clush, clubak and nodeset, three convenient command-line tools using the library are included.</p>
+</blockquote>
+<p><strong>clush</strong></p>
+<p><em>clush</em></p>
+<blockquote>
+<p>clush is an utility provided with ClusterShell that aims to ease cluster administration.</p>
+</blockquote>
+<p><em>Features (in brief)</em></p>
+<blockquote>
+<ul>
+<li>execution of commands in parallel</li>
+<li>smart display of command results (gathering, sorting by node, nodeset or node groups)</li>
+<li>standard input text redirection to remote nodes</li>
+<li>files copying in parallel</li>
+<li>pdsh options backward compatibility (compare)</li>
+</ul>
+</blockquote>
+<p><em>TEST</em></p>
+<p>setup(ubuntu)</p>
+<blockquote>
+<p>sudo apt-get install clustershell
+cat /etc/clustershell/clush.conf</p>
+</blockquote>
+<div class="highlight"><pre><span class="err">#</span><span class="x"> Configuration file for clush </span><span class="err">#</span><span class="x"> </span>
+<span class="err">#</span><span class="x"> Please see man clush.conf(5) </span><span class="err">#</span><span class="x"> </span>
+<span class="err">#</span><span class="x"> </span><span class="p">$</span><span class="nv">Id</span><span class="x">: clush.conf 463 2011-02-09 21:57:52Z st-cea </span><span class="p">$</span><span class="x"> </span>
+<span class="x">[Main] </span>
+<span class="x">fanout: 64 </span>
+<span class="x">connect_timeout: 15 </span>
+<span class="x">command_timeout: 0 </span>
+<span class="x">color: auto </span>
+<span class="x">fd_max: 16384 </span>
+<span class="x">history_size: 100 </span>
+<span class="x">node_count: yes </span>
+<span class="x">verbosity: 1 </span>
+<span class="cp">#</span><span class="nf">ssh_user</span><span class="x">: root </span>
+<span class="cp">#</span><span class="nf">ssh_path</span><span class="x">: /usr/bin/ssh </span>
+<span class="cp">#</span><span class="nf">ssh_options</span><span class="x">: -oStrictHostKeyChecking=no</span>
+</pre></div>
+
+
+<p>config and it changed as below :</p>
+<div class="highlight"><pre><span class="err">#</span><span class="x"> Configuration file for clush </span><span class="err">#</span><span class="x"> </span>
+<span class="err">#</span><span class="x"> Please see man clush.conf(5) </span><span class="err">#</span><span class="x"> </span>
+<span class="err">#</span><span class="x"> </span><span class="p">$</span><span class="nv">Id</span><span class="x">: clush.conf 463 2011-02-09 21:57:52Z st-cea </span><span class="p">$</span><span class="x"> </span>
+<span class="x">[Main] </span>
+<span class="x">fanout: 64 </span>
+<span class="x">connect_timeout: 15 </span>
+<span class="x">command_timeout: 0 </span>
+<span class="x">color: auto </span>
+<span class="x">fd_max: 16384 </span>
+<span class="x">history_size: 100 </span>
+<span class="x">node_count: yes </span>
+<span class="x">verbosity: 1 </span>
+<span class="x">ssh_user: root </span>
+<span class="cp">#</span><span class="nf">ssh_path</span><span class="x">: /usr/bin/ssh </span>
+<span class="cp">#</span><span class="nf">ssh_options</span><span class="x">: -oStrictHostKeyChecking=no</span>
+</pre></div>
+
+
+<p>then:</p>
+<blockquote>
+<p>sudo vim /etc/clustershell/groups</p>
+</blockquote>
+<p>add these test case:</p>
+<blockquote>
+<p>us: us2 us3</p>
+</blockquote>
+<p>edit /etc/hosts:</p>
+<blockquote>
+<p>184.22.241.102 us2<br />
+184.82.244.17 us3</p>
+</blockquote>
+<p>add your ssh-key to us2,us3(if dont know,u can search online)</p>
+<p>last,we run command:</p>
+<blockquote>
+<p>clush -b -g us "uptime"</p>
+</blockquote>
+<p>screen:</p>
+<div class="highlight"><pre>---------------  
+us2
+---------------
+07:43:04 up 269 days, 12:59, 0 users, load average: 0.24, 0.05, 0.02
+---------------  
+us3
+---------------  
+07:43:05 up 173 days, 12:18, 0 users, load average: 0.00, 0.00, 0.00
+</pre></div>
+
+
+<p>PS:if u want to know more.the list would be help u.</p>
+<p>clustershell wiki : <a href="https://github.com/cea-hpc/clustershell/wiki">https://github.com/cea-hpc/clustershell/wiki</a><br />
+clush : <a href="https://github.com/cea-hpc/clustershell/wiki/clush">https://github.com/cea-hpc/clustershell/wiki/clush</a></p>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div>
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>AboutMe</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+    <div class="cover-img" style="background-image: url('/images/trainyard.jpg')">
+        <div class="cover-body">
+            <header class="header">
+                <hgroup>
+                    <h1 class="brand-main"><a href="/">Z晓L's Blog</a></h1>
+                    <p class="tagline">welcome to my nerverland</p>
+                    <p class="links"><a href="/">首页</a></p>
+                    <p class="links"><a href="/categories.html">分类</a></p>
+                    <p class="links"><a href="/archives.html">归档</a></p>
+                    <p class="links"><a href="/tags.html">标签</a></p>
+                    <p class="links"><a href="/pages/aboutme.html">关于</a></p>
+                    <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-weibo fa-2x"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-2x"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-2x"></i>
+                        </a>
+                    <p>
+                </hgroup>
+            </header>
+        </div>
+    </div>
+</div>    <div class="pure-u-1">
+        <div class="content">
+            <h1 class="content-subhead">AboutMe</h1>
+            <p><h2>简介</h2>
+<p>有幸一直从事于数据相关的工作，使用hadoop，hbase进行分布式计算，分词，新闻分类，对爬虫有研究，熟悉python及其他脚本语言。<br />
+近期接触storm，mongodb，使用java。<br />
+对机器学习，挖掘，NLP比较感兴趣，希望有志同道合的朋友一起研究，学习。<br />
+爱生活，爱朋友，爱家人。  </p>
+<h2>工作技能</h2>
+<p><strong>系统</strong> </p>
+<blockquote>
+<p>LINUX（UBUNTU，CENTOS居多），WINDOWS  </p>
+</blockquote>
+<p><strong>语言</strong> </p>
+<blockquote>
+<p>JAVA（当前工作），PYTHON（主力，熟练），SHELL（简化日常工作），TCL（半年爬虫解析XML），RUBY（WATIR），C（大学学的，不熟），准备学习C++ ，有机会还想接触OBJECT-C or SWIFT  </p>
+</blockquote>
+<p><strong>数据库</strong> </p>
+<blockquote>
+<p>MYSQL/MONGODB/HBASE/DYNAMODB...  </p>
+</blockquote>
+<h2>联系方式</h2>
+<p>新浪微博：Z晓L http://weibo.com/shadowlg<br />
+邮箱：shadowlgzhu#gmail.com(#换成@)</p></p>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
