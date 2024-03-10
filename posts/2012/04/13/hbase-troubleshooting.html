@@ -22,6 +22,15 @@
             $(".content").fitVids();
         });
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 
 <body>
@@ -67,9 +76,8 @@
 <ul>
 <li>在重新启动HBase服务的时候可能会出现如下的错误：</li>
 </ul>
-<div class="highlight"><pre>INFO ipc.HbaseRPC: Server at /227.23.56.100:60020 could not be reached after 1 tries, giving up.
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>INFO ipc.HbaseRPC: Server at /227.23.56.100:60020 could not be reached after 1 tries, giving up.
+</code></pre></div>
 
 <p>出现这个错误的原因可能会有很多，比如各个配置文件中的地址不一致等，但我这里给出的一个可能原因是端口号被其他某一进程占用，或者还是HBase进程使用着，但此服务（或说此端口）已经不再可用，解决的方式为：通过此端口查找到对应的进程，然后杀死对应的进程，再重启HBase服务，你会发现上面出现的错误将消失，服务启动正常。
 具体步骤为：
@@ -77,33 +85,29 @@
 <ul>
 <li>错误二</li>
 </ul>
-<div class="highlight"><pre><span class="x">error are localhost: starting zookeeper, logging to /usr/local/hadoop/hbase/bin/../logs/hbase-hadoop-zookeeper-user-HP-dx2480-MT-NA125PA.out localhost: java.net.BindException: Address already in use localhost: at sun.nio.ch.Net.bind(Native Method) localhost: at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:137) localhost: at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:77) localhost: at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:70) localhost: at org.apache.zookeeper.server.NIOServerCnxn</span><span class="p">$</span><span class="nv">Factory</span><span class="x">.(NIOServerCnxn.java:122) localhost: at org.apache.zookeeper.server.ZooKeeperServerMain.runFromConfig(ZooKeeperServerMain.java:106) localhost: at org.apache.hadoop.hbase.zookeeper.HQuorumPeer.runZKServer(HQuorumPeer.java:85) localhost: at org.apache.hadoop.hbase.zookeeper.HQuorumPeer.main(HQuorumPeer.java:70)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>error are localhost: starting zookeeper, logging to /usr/local/hadoop/hbase/bin/../logs/hbase-hadoop-zookeeper-user-HP-dx2480-MT-NA125PA.out localhost: java.net.BindException: Address already in use localhost: at sun.nio.ch.Net.bind(Native Method) localhost: at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:137) localhost: at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:77) localhost: at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:70) localhost: at org.apache.zookeeper.server.NIOServerCnxn$Factory.(NIOServerCnxn.java:122) localhost: at org.apache.zookeeper.server.ZooKeeperServerMain.runFromConfig(ZooKeeperServerMain.java:106) localhost: at org.apache.hadoop.hbase.zookeeper.HQuorumPeer.runZKServer(HQuorumPeer.java:85) localhost: at org.apache.hadoop.hbase.zookeeper.HQuorumPeer.main(HQuorumPeer.java:70)
+</code></pre></div>
 
 <p>解决:</p>
-<div class="highlight"><pre>It looks like your zookeeper process is already running. Or (much less likely), something else is already listening on port 2181 or 2888. Did you install a separate zookeeper package and start it?
-If so, you’ll need to tell HBase not to start zookeeper automatically. Edit the conf/hbase-env.sh file and add the line:
-export HBASE_MANAGES_ZK=false
-On the other hand, if you want HBase to start zookeeper automatically, then change that setting to “true”, make sure any current zookeeper process is stopped and try again.
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">It</span><span class="w"> </span><span class="n">looks</span><span class="w"> </span><span class="n">like</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">zookeeper</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">running</span><span class="o">.</span><span class="w"> </span><span class="n">Or</span><span class="w"> </span><span class="p">(</span><span class="n">much</span><span class="w"> </span><span class="n">less</span><span class="w"> </span><span class="n">likely</span><span class="p">),</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">listening</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="mi">2181</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="mf">2888.</span><span class="w"> </span><span class="n">Did</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">separate</span><span class="w"> </span><span class="n">zookeeper</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">it</span><span class="err">?</span>
+<span class="n">If</span><span class="w"> </span><span class="n">so</span><span class="p">,</span><span class="w"> </span><span class="n">you</span><span class="err">’</span><span class="n">ll</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">tell</span><span class="w"> </span><span class="n">HBase</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">zookeeper</span><span class="w"> </span><span class="n">automatically</span><span class="o">.</span><span class="w"> </span><span class="n">Edit</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">conf</span><span class="o">/</span><span class="n">hbase</span><span class="o">-</span><span class="n">env</span><span class="o">.</span><span class="n">sh</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">line</span><span class="p">:</span>
+<span class="k">export</span><span class="w"> </span><span class="n">HBASE_MANAGES_ZK</span><span class="o">=</span><span class="bp">false</span>
+<span class="n">On</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">hand</span><span class="p">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">want</span><span class="w"> </span><span class="n">HBase</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">zookeeper</span><span class="w"> </span><span class="n">automatically</span><span class="p">,</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="err">“</span><span class="bp">true</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">sure</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">zookeeper</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">stopped</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">try</span><span class="w"> </span><span class="n">again</span><span class="o">.</span>
+</code></pre></div>
 
 <ul>
 <li>当我把hadoop、hbase安装配置（具体参考这里）好了之后，启动hbase的shell交互模式，输入命令却出现了下面这样的错误：</li>
 </ul>
-<div class="highlight"><pre><span class="n">ERROR</span><span class="o">:</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">hadoop</span><span class="o">.</span><span class="na">hbase</span><span class="o">.</span><span class="na">MasterNotRunningException</span><span class="o">:</span> <span class="n">Retried</span> <span class="mi">7</span> <span class="n">times</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">hadoop</span><span class="o">.</span><span class="na">hbase</span><span class="o">.</span><span class="na">MasterNotRunningException</span><span class="o">:</span><span class="w"> </span><span class="n">Retried</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="n">times</span>
+</code></pre></div>
 
 <p>这是为什么呢，Master为什么没有启动起来呢？
 查看logs目录下的Master日志，发现有以下信息：</p>
-<div class="highlight"><pre><span class="x">2012-02-01 14:41:52,867 FATAL org.apache.hadoop.hbase.master.HMaster: Unhandled exception. Starting shutdown.</span>
-<span class="x">org.apache.hadoop.ipc.RPC</span><span class="p">$</span><span class="nv">VersionMismatch</span><span class="x">: Protocol org.apache.hadoop.hdfs.protocol.ClientProtocol version mismatch. (client = 42, server = 41)</span>
-<span class="x">at org.apache.hadoop.ipc.RPC.getProxy(RPC.java:364)</span>
-<span class="x">…………..</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="mf">2012</span><span class="o">-</span><span class="mf">02</span><span class="o">-</span><span class="mf">01</span><span class="w"> </span><span class="mf">14</span><span class="p">:</span><span class="mf">41</span><span class="p">:</span><span class="mf">52</span><span class="p">,</span><span class="mf">867</span><span class="w"> </span><span class="n">FATAL</span><span class="w"> </span><span class="ow">or</span><span class="n">g</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">hadoop</span><span class="mf">.</span><span class="n">hbase</span><span class="mf">.</span><span class="n">master</span><span class="mf">.</span><span class="n">HMaster</span><span class="p">:</span><span class="w"> </span><span class="n">Unhandled</span><span class="w"> </span><span class="n">exception</span><span class="mf">.</span><span class="w"> </span><span class="n">Starting</span><span class="w"> </span><span class="n">shutdown</span><span class="mf">.</span>
+<span class="ow">or</span><span class="n">g</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">hadoop</span><span class="mf">.</span><span class="n">ipc</span><span class="mf">.</span><span class="n">RPC$VersionMismatch</span><span class="p">:</span><span class="w"> </span><span class="n">Protocol</span><span class="w"> </span><span class="ow">or</span><span class="n">g</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">hadoop</span><span class="mf">.</span><span class="n">hdfs</span><span class="mf">.</span><span class="n">protocol</span><span class="mf">.</span><span class="n">ClientProtocol</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="n">mismatch</span><span class="mf">.</span><span class="w"> </span><span class="p">(</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">42</span><span class="p">,</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">41</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="ow">or</span><span class="n">g</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">hadoop</span><span class="mf">.</span><span class="n">ipc</span><span class="mf">.</span><span class="n">RPC</span><span class="mf">.</span><span class="kr">get</span><span class="n">Proxy</span><span class="p">(</span><span class="n">RPC</span><span class="mf">.</span><span class="n">java</span><span class="p">:</span><span class="mf">364</span><span class="p">)</span>
+<span class="err">…………</span><span class="mf">..</span>
+</code></pre></div>
 
 <p>解决方法：
 将hbase/lib目录下的hadoop-core的jar文件删除，将hadoop目录下的hadoop-0.20.2-core.jar拷贝到hbase/lib下面，然后重新启动hbase即可。</p>
@@ -111,7 +115,7 @@ On the other hand, if you want HBase to start zookeeper automatically, then chan
 <li>还有一个问题是，关于ip地址映射，dns解析，用的是ipv4，但如果本机的ipv6协议没关的话可能就将解析为ipv6的地址去了，所以，最好把ipv6协议关了。
 ipv6关闭方法:</li>
 </ul>
-<div class="highlight"><pre>在/etc/modprobe.d/dist.conf结尾添加
+<div class="highlight"><pre><span></span><code>在/etc/modprobe.d/dist.conf结尾添加
 alias net-pf-10 off
 alias ipv6 off
 可用vi等编辑器，也可以通过命令：
@@ -119,8 +123,7 @@ cat &lt;&lt;EOF&gt;&gt;/etc/modprobe.d/dist.conf
 alias net-pf-10 off
 alias ipv6 off
 EOF
-</pre></div>
-
+</code></pre></div>
 
 <p>写改完毕重启电脑。</p>
 <p>最后，集群时间要统一，可以用ntp来时间同步，网上可以查到具体配置，这里就不细说了。</p>
@@ -129,11 +132,11 @@ EOF
                 <div class="copyright">
                     版权声明：自由转载-非商用-非衍生-保持署名
                 </div>
-                <div class="donation">
+                <!--div class="donation">
                     <img src="/images/donation.png"/>
                     <br>
                     <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
-                </div>
+                </div-->
             </center>
             </section>
             <div class="hr"></div>

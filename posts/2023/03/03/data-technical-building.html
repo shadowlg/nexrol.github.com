@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>数据平台技术建设 // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="http://weibo.com/shadowlg">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>五 03 三月 2023</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>数据平台技术建设</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/work.html">work</a> Tags:                                 <a class="post-category" href="/tag/data.html">Data</a>
+                        </p>
+                </header>
+            </section>
+            <h2>前言</h2>
+<p>根据我的认知以及公司实际情况对数据业务的相关技术规划，一些思路也供大家参考。</p>
+<h2>团队在公司的位置与定位</h2>
+<p>(略)</p>
+<p>平台的实施以及所能释放的能量范围需要公司级的定位和支持，看清自己的位置。</p>
+<h2>团队定义，构建方向</h2>
+<h3>方向目标架构</h3>
+<p>演进方向 ：</p>
+<ul>
+<li>数据储备 VS 数据湖、仓库/分析(离线&amp;实时) VS 数据中台 VS 数据智能化/决策/创新价值</li>
+</ul>
+<p>遵循准则：</p>
+<ul>
+<li>Objects : 利用工具提升效率，整合资源搭建基础设施以定义数据流，促使业务团队更加注重业务代码的具体实现，能够支撑起大数据量的处理需求</li>
+<li>Key abilities ： 技术是基础，服务意识，产品意识</li>
+<li>Key words : 成本 ，用户满意度，服务性能指标(bug，宕机次数，SLA等)，组件工具化(效率) --&gt; 不要过度，解决问题优先</li>
+</ul>
+<p>价值衡量：</p>
+<ul>
+<li>假设：   <ul>
+<li>各个业务在部门的优先级系数 = a1、a2、a3....；</li>
+<li>基础服务被某一个业务接入后给业务节省的成本（人天） = 业务自研此服务的成本 + 业务自己运维 - 业务产品接入服务的成本。</li>
+<li>可以推导出每个服务开发出来后对整个部门节省的成本是：   </li>
+<li>总体成本节省 = （a1<em> 业务 1 节省 + a2</em> 业务 2 节省 + ...）- 基础服务开发成本 - 数据迁移（适配层开发)）- 基础服务运维。</li>
+</ul>
+</li>
+</ul>
+<p><center><img src="/images/2023/data_building.png" alt="data_building" style="zoom:60%;" /></center></p>
+<div STYLE="page-break-after: always;"></div>
+<h3>现在有什么？</h3>
+<p>这里列出当前能够提供的能力，比如爬虫，解析，调度，分析引擎，质量规则，集成等等</p>
+<p>因为可能分析以及AI能力是接下来的趋势，因此需要罗列下当前的一些需求样例，更贴近用户。比如分析，比如模型或者数据集成。
+这里举几个分析的例子：</p>
+<p><strong>From XX(人或部门)：</strong></p>
+<ol>
+<li>查出专利包含的优先权的数量超过某个值的专利数</li>
+<li>一个专利拥有的法律状态和法律事件最多的专利，最多有多少个，前端要展示不知道极限在那</li>
+<li>我要做个ep指定国数据展示，但是需要知道ep专利的inpadoc法律状态中，L501EP 有值的覆盖率多少，统计以一条法律信息为单位，不以专利数量为单位</li>
+<li>做ANS用户画像，比如：一个人或公司的专利数，同族大小，近三年，授权。。。ANS内名字过长，包含引号，斜线等各种特殊符号的数据</li>
+</ol>
+<div STYLE="page-break-after: always;"></div>
+<h3>各个方向要继续做什么？</h3>
+<p>以下皆为举例：</p>
+<p><u><strong>数据采集同步方向</strong></u></p>
+<ul>
+<li>跨数据源的数据采集 : Dynamodb,PG , MYSQL... 统一落地到s3，建立数据落地目录标准。 对接下游数据消费，包括数据湖以及数据集成。</li>
+</ul>
+<p><strong><u>数据湖/仓库方向 - 离线/实时计算</u></strong></p>
+<ul>
+<li>跨数据源的原始数据集成至数据湖 ，按类型迭代PG，MYSQL，MONGODB... - Lake Formation</li>
+<li>
+<p>数仓分层，ODS，DW等，制定原则，自助化数据分层（这里技术上可操作空间比较大，比如根据使用记录，对常用的临时表，字段判断主动聚合）等</p>
+</li>
+<li>
+<p>实时化 :</p>
+</li>
+<li>LAMBDA架构 <ol>
+<li>先将最小粒度的天细化到小时级别</li>
+<li>speed layer的实时需求(侧重滑动窗口类统计需求) </li>
+<li>server layer的实时需求 | 不够及时，两套计算逻辑，可能出差错。好处是方便重新做。</li>
+</ol>
+</li>
+<li>KAPPA架构 ： 对一般公司不够平缓过度。出错不容易历史数据重做。需要消耗更多的资源，Hadoop/Spark的适用场景、稳定性、社区活跃度以及开发者数量都远高于Flink等流式计算。</li>
+</ul>
+<p><strong><u>OLAP引擎方向</u></strong></p>
+<ul>
+<li>即席查询 presto/ 统计SQL情况，哪些表，哪些字段使用情况，哪些表根本不需要，成本优化；经常查的语句可以做缓存，经常用的数据自动抽取汇聚；</li>
+<li>多维分析 kylin/与BI对接 </li>
+</ul>
+<p><strong><u>数据可视化方向</u></strong></p>
+<ul>
+<li>自研 OR 开源 OR 收费</li>
+<li>开源：superset/redash/metabase</li>
+<li>收费：tableau/powerBI/FineBI/quicksight</li>
+<li>PS：要可视化数据，也得考虑权限，通过中间层衔接，可解决数据安全。也可直接与后台的数据湖对接，但是数据能被取出，除非二次开发改造。quicksight是aws的BI，脱离AWS环境用不了。工具只是使用，要考虑管理属性，根据公司阶段各自规划。</li>
+</ul>
+<p><strong><u>AI平台构建方向</u></strong></p>
+<ul>
+<li>提供最基本的算法集成，聚类等，从输入到输出配置化，自动化，任务化。</li>
+</ul>
+<p><strong><u>数据集成方向</u></strong></p>
+<ul>
+<li>算法模型准备好了，要跑数据并实时存下来，做集成。这里额外要考虑的是当模型多了后，要管理前后依赖关系，谁是谁的输入输出，少了一个输入，是否只是继续跑下去等等。</li>
+<li>另外一面，模型集成，做数据仓库应用层的输出，集成模型，或者集成到实时计算层。 </li>
+<li>第三个方面，统一查询服务 - 数据API</li>
+</ul>
+<p><strong><u>元数据管理方向</u></strong></p>
+<ul>
+<li>数据原始信息 ：表结构，文件路径，格式等</li>
+<li>数据血缘信息 ：责任人，归属的业务 , 上下游。</li>
+<li>服务使用信息 ： 暂时想到人为管理。</li>
+<li>过程数据：表每天的行数，大小，更新时间</li>
+<li>profiling信息：多少为空，多少为数字等规则化后的结果。</li>
+<li>增加通告一栏，所有表结构信息变更有记录，版本管理。</li>
+<li>表的级别，添加属性：数据敏感性，high，low等</li>
+<li>分析数据可展示，一些统计结果，命名最多的字段；同一含义，不同形态的字段。</li>
+<li>权限配置，表或字段谁能看谁不能看；字段，或者数值样例脱敏</li>
+<li>与数据湖配合物理分层，以及和产品业务开发配合业务分层，数据资产走向信息资产</li>
+<li>支持自建表，表的导入等。</li>
+<li>租户管理,管理自己的表,上传审核,是否公开等</li>
+<li>与其他系统打通</li>
+</ul>
+<p><strong><u>调度权限管理方向</u></strong></p>
+<ul>
+<li>从数据采集层至最后应用层，任务调度管理，其实就是调度的中心化，支持的引擎多样化(Airflow/Dophinscheduler等)。</li>
+</ul>
+<p><strong><u>数据治理/质量管理方向</u></strong></p>
+<p>数据治理 </p>
+<ul>
+<li>导出支持，工单审核，数据报表、能够管理任务、定期执行、用户能够保存SQL表达式、管理指标、对接到报表平台。</li>
+<li>profiling，常规的指标（规则），常规部分的报表展示。后期可使用户自定义。</li>
+<li>指标可分为经常要统计报表的指标（也可称之为规则），也包括数据运营报告的指标。</li>
+<li>data steward</li>
+<li>数据质量评分体系（算法+指标+多维展示）</li>
+<li>规则引擎(SQL+自定义函数)</li>
+</ul>
+<p><strong><u>数据分析运营指标构建方向</u></strong></p>
+<p>数据portal</p>
+<ul>
+<li>数据运营中心，多个dashboard，多个平台信息集中存放地，是总览不包括细节的部分，指标，报表统一显示</li>
+<li>发版信息<ol>
+<li>周/月 报告 ：每周同步的数据量；每周平台处理数量：专利数据库，每周的情况;每周，告警了几次，延迟多少，周度或者月度报告分析</li>
+<li>跨区域同步数据量，记录数，容量大小，涉及多少张表 ， 每张表维度，时间维度 ， 趋势线，同比环比等; </li>
+<li>数据更新方面：更新了多少，新增了多少，删除了多少表：新增了多少表，减少了多少表</li>
+<li>data lake处理了多少张表，多少记录的转换，新表的话都是多少数据，scan量等</li>
+<li>数据处理平台，任务报告，新建了多少任务，处理了多少记录，每个类型多少等</li>
+<li>费用报告。</li>
+<li>资源利用率报告。</li>
+<li>性能指标报告。</li>
+<li>账单分析</li>
+</ol>
+</li>
+</ul>
+<p><strong><u>数据运维方向</u></strong></p>
+<ul>
+<li>CI/CD , k8s , 机器资源管理 ，服务监控，中间件数据库监控</li>
+</ul>
+<hr>
+<p><strong><u>数据处理流程平台方向</u></strong></p>
+<ul>
+<li>这块各自公司可能不同，如果有的话，偏向定义为为自己业务定制化开发的统一入口。数据的上线都是通过此入口。可以串联多个引擎调度，可以集成爬虫、解析、图片、通知等动作。</li>
+</ul>
+<p><strong><u>数据同步方向</u></strong></p>
+<ul>
+<li>这里的同步更多的指跨区域的同步，比如中美环境的数据同步，也包括图片等非结构化数据的同步。（注意，根据业务需要非结构化数据往往需要和库表信息打包做完整信息的集成同步）</li>
+</ul>
+<p><strong><u>数据对接交付方向</u></strong></p>
+<ul>
+<li>可能会有一些涉及对外数据支撑，和销售打交道，技术上更多是业务输出，对接内部的数据平台工具，分阶段可以形成自己的CRM管理系统，进一步可以考虑数据开放平台。</li>
+</ul>
+<p><strong><u>数据爬虫平台方向</u></strong></p>
+<ul>
+<li>代理服务</li>
+<li>验证码服务</li>
+<li>网站自定义线程数，速率控制，调度策略，可视化</li>
+</ul>
+<p><strong><u>数据源管理 </u></strong></p>
+<ul>
+<li>作为数据公司，一定有很多的原始文件，并且是偏零散的，成千万上亿个文件。比如获取的新闻、论文、专利文本等，文件有自身的更新版本，有不同渠道来源，对应不同的代码解析器，字段对应产线的字段，主要指这一块。</li>
+</ul>
+<p><strong><u>解析框架</u></strong></p>
+<ul>
+<li>对应数据源，能够找到不同的解析引擎。解析引擎能够支持单个，批量以及各种更新方式等（Insert、Update、UpdateReplace、etc..）</li>
+</ul>
+<hr>
+<p><strong><u>Others</u></strong></p>
+<ul>
+<li>标注需求（平台+集成）</li>
+<li>Quality工具（平台）</li>
+<li>开发内外工具需求（source管理可视化、云文件在线编辑、云文件在线恢复等）</li>
+</ul>
+<p><strong><u>反馈渠道管理</u></strong></p>
+<p>(略)</p>
+<hr>
+<p><strong><u>数据发布</u></strong></p>
+<ul>
+<li>线上数据因为是流式处理的，可能从源头到最终上线都是线性且trigger起pipeline，这对于测试以及验证都不太好把控，我们需要区分数据的release数据和产线数据，保证产线数据的稳定性。</li>
+<li>能够简化跨区域数据的同步架构，包括数据，索引，以及数据的一致性是稳定的。</li>
+<li>单一的云服务商，可能成本过高，可以考虑多云。</li>
+<li>涉及data update(batch+stream)、data hotfix、data recover</li>
+</ul>
+<p>其实以上，可以看到有些方向是环环相扣的，环节打通本身是个难点，这里想到包括比如：</p>
+<ol>
+<li>多套环境</li>
+<li>云原生</li>
+<li>权限控制，数据安全</li>
+</ol>
+<h2>Roadmap</h2>
+<p>（略）</p>
+<h2>HC Resource</h2>
+<p>（略）</p>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <!--div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div-->
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "nexrol"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

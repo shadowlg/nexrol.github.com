@@ -22,6 +22,15 @@
             $(".content").fitVids();
         });
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 
 <body>
@@ -64,42 +73,39 @@
                 </header>
             </section>
             <p>放假回来，发现集群不工作了，namenode已不再，查看日志：</p>
-<div class="highlight"><pre>2012-10-22 11:00:48,234 ERROR org.apache.hadoop.hdfs.server.namenode.NameNode: java.lang.NumberFormatException: For input string: “”
-at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
-at java.lang.Integer.parseInt(Integer.java:470)
-at java.lang.Short.parseShort(Short.java:120)
-at java.lang.Short.parseShort(Short.java:78)
-at org.apache.hadoop.hdfs.server.namenode.FSEditLog.readShort(FSEditLog.java:1311)
-at org.apache.hadoop.hdfs.server.namenode.FSEditLog.loadFSEdits(FSEditLog.java:541)
-at org.apache.hadoop.hdfs.server.namenode.FSImage.loadFSEdits(FSImage.java:1011)
-at org.apache.hadoop.hdfs.server.namenode.FSImage.loadFSImage(FSImage.java:826)
-at org.apache.hadoop.hdfs.server.namenode.FSImage.recoverTransitionRead(FSImage.java:364)
-at org.apache.hadoop.hdfs.server.namenode.FSDirectory.loadFSImage(FSDirectory.java:87)
-at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.initialize(FSNamesystem.java:315)
-at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.(FSNamesystem.java:296)
-at org.apache.hadoop.hdfs.server.namenode.NameNode.initialize(NameNode.java:205)
-at org.apache.hadoop.hdfs.server.namenode.NameNode.(NameNode.java:283)
-at org.apache.hadoop.hdfs.server.namenode.NameNode.createNameNode(NameNode.java:986)
-at org.apache.hadoop.hdfs.server.namenode.NameNode.main(NameNode.java:995)
+<div class="highlight"><pre><span></span><code><span class="mi">2012</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">48</span><span class="p">,</span><span class="mi">234</span><span class="w"> </span><span class="n">ERROR</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">NameNode</span><span class="p">:</span><span class="w"> </span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">NumberFormatException</span><span class="p">:</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="n">string</span><span class="p">:</span><span class="w"> </span><span class="err">“”</span>
+<span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">NumberFormatException</span><span class="o">.</span><span class="n">forInputString</span><span class="p">(</span><span class="n">NumberFormatException</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">48</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">Integer</span><span class="o">.</span><span class="n">parseInt</span><span class="p">(</span><span class="n">Integer</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">470</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">Short</span><span class="o">.</span><span class="n">parseShort</span><span class="p">(</span><span class="n">Short</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">120</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">Short</span><span class="o">.</span><span class="n">parseShort</span><span class="p">(</span><span class="n">Short</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">78</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSEditLog</span><span class="o">.</span><span class="n">readShort</span><span class="p">(</span><span class="n">FSEditLog</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">1311</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSEditLog</span><span class="o">.</span><span class="n">loadFSEdits</span><span class="p">(</span><span class="n">FSEditLog</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">541</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSImage</span><span class="o">.</span><span class="n">loadFSEdits</span><span class="p">(</span><span class="n">FSImage</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">1011</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSImage</span><span class="o">.</span><span class="n">loadFSImage</span><span class="p">(</span><span class="n">FSImage</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">826</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSImage</span><span class="o">.</span><span class="n">recoverTransitionRead</span><span class="p">(</span><span class="n">FSImage</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">364</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSDirectory</span><span class="o">.</span><span class="n">loadFSImage</span><span class="p">(</span><span class="n">FSDirectory</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">87</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSNamesystem</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">FSNamesystem</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">315</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">FSNamesystem</span><span class="o">.</span><span class="p">(</span><span class="n">FSNamesystem</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">296</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">NameNode</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">NameNode</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">205</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">NameNode</span><span class="o">.</span><span class="p">(</span><span class="n">NameNode</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">283</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">NameNode</span><span class="o">.</span><span class="n">createNameNode</span><span class="p">(</span><span class="n">NameNode</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">986</span><span class="p">)</span>
+<span class="n">at</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">NameNode</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">NameNode</span><span class="o">.</span><span class="n">java</span><span class="p">:</span><span class="mi">995</span><span class="p">)</span>
 
-2012-10-22 11:00:48,236 INFO org.apache.hadoop.hdfs.server.namenode.NameNode: SHUTDOWN_MSG:
-</pre></div>
-
+<span class="mi">2012</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">48</span><span class="p">,</span><span class="mi">236</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">hadoop</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">namenode</span><span class="o">.</span><span class="n">NameNode</span><span class="p">:</span><span class="w"> </span><span class="n">SHUTDOWN_MSG</span><span class="p">:</span>
+</code></pre></div>
 
 <p>大概是因为，首先是主节点的磁盘没空间了，建议先把集群各节点的剩余空间看下，最好有定时清理的程序。
 腾出空间后，再重新启动，仍然有问题。那么，就有可能是namenode的资料有损了，到dfs.name.dir目录下查看一下，比较一下image中fsimage和current中fsimage的大小，将前面的拷进后面的替换掉（做好备份），再试试。
 如果还不行，看你是否有这只secondarynamenode，如果有，将里面的文件覆盖掉dfs.name.dir下的，重新启动试试。
 再不行的话，网上说是把namenode的current中所有文件备份好，然后格式化namenode，然后把备份的image拷贝回来，重启namenode所有服务后，</p>
-<div class="highlight"><pre>./bin/start-balancer.sh
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>./bin/start-balancer.sh
+</code></pre></div>
 
 <p>就一切OK了。但是我怕hbase里的数据会丢失。
 于是再找，发现一个方法竟然可行，具体原因也不是很明白</p>
-<div class="highlight"><pre>Could you backup your edits file, try $ printf “\xff\xff\xff\xee\xff” &gt;
+<div class="highlight"><pre><span></span><code>Could you backup your edits file, try $ printf “\xff\xff\xff\xee\xff” &gt;
 edits, and start HDFS？ It should work.
-</pre></div>
-
+</code></pre></div>
 
 <p>就是把原来的edits备份下，再新的空的edits下写入上面的内容（注意要在新的空的文件下，不然我试过还是会有问题出现），然后，重启hadoop，问题解决！</p>
             <section id="copyright">
@@ -107,11 +113,11 @@ edits, and start HDFS？ It should work.
                 <div class="copyright">
                     版权声明：自由转载-非商用-非衍生-保持署名
                 </div>
-                <div class="donation">
+                <!--div class="donation">
                     <img src="/images/donation.png"/>
                     <br>
                     <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
-                </div>
+                </div-->
             </center>
             </section>
             <div class="hr"></div>

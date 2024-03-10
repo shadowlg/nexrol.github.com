@@ -22,6 +22,15 @@
             $(".content").fitVids();
         });
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 
 <body>
@@ -66,12 +75,11 @@
             <p>无意中发现一个python的第三方多线程模块threadpool</p>
 <p>地址是 ：<a href="http://chrisarndt.de/projects/threadpool/">http://chrisarndt.de/projects/threadpool/</a></p>
 <p>例子不难看懂：</p>
-<div class="highlight"><pre><span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">poolsize</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">poolsize</span><span class="p">)</span>
 <span class="n">requests</span> <span class="o">=</span> <span class="n">makeRequests</span><span class="p">(</span><span class="n">some_callable</span><span class="p">,</span> <span class="n">list_of_args</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
 <span class="p">[</span><span class="n">pool</span><span class="o">.</span><span class="n">putRequest</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">requests</span><span class="p">]</span>
 <span class="n">pool</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>poolsize：线程数
 some_callable：可调方法
@@ -82,11 +90,11 @@ list_of_args：方法参数</p>
                 <div class="copyright">
                     版权声明：自由转载-非商用-非衍生-保持署名
                 </div>
-                <div class="donation">
+                <!--div class="donation">
                     <img src="/images/donation.png"/>
                     <br>
                     <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
-                </div>
+                </div-->
             </center>
             </section>
             <div class="hr"></div>

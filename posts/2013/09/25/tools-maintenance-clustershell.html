@@ -22,6 +22,15 @@
             $(".content").fitVids();
         });
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 
 <body>
@@ -91,42 +100,40 @@
 <p>sudo apt-get install clustershell
 cat /etc/clustershell/clush.conf</p>
 </blockquote>
-<div class="highlight"><pre><span class="err">#</span><span class="x"> Configuration file for clush </span><span class="err">#</span><span class="x"> </span>
-<span class="err">#</span><span class="x"> Please see man clush.conf(5) </span><span class="err">#</span><span class="x"> </span>
-<span class="err">#</span><span class="x"> </span><span class="p">$</span><span class="nv">Id</span><span class="x">: clush.conf 463 2011-02-09 21:57:52Z st-cea </span><span class="p">$</span><span class="x"> </span>
-<span class="x">[Main] </span>
-<span class="x">fanout: 64 </span>
-<span class="x">connect_timeout: 15 </span>
-<span class="x">command_timeout: 0 </span>
-<span class="x">color: auto </span>
-<span class="x">fd_max: 16384 </span>
-<span class="x">history_size: 100 </span>
-<span class="x">node_count: yes </span>
-<span class="x">verbosity: 1 </span>
-<span class="cp">#</span><span class="nf">ssh_user</span><span class="x">: root </span>
-<span class="cp">#</span><span class="nf">ssh_path</span><span class="x">: /usr/bin/ssh </span>
-<span class="cp">#</span><span class="nf">ssh_options</span><span class="x">: -oStrictHostKeyChecking=no</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Configuration</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">clush</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>
+<span class="err">#</span><span class="w"> </span><span class="n">Please</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">man</span><span class="w"> </span><span class="n">clush</span><span class="p">.</span><span class="n">conf</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>
+<span class="err">#</span><span class="w"> </span><span class="err">$</span><span class="nl">Id</span><span class="p">:</span><span class="w"> </span><span class="n">clush</span><span class="p">.</span><span class="n">conf</span><span class="w"> </span><span class="mi">463</span><span class="w"> </span><span class="mi">2011</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">09</span><span class="w"> </span><span class="mi">21</span><span class="err">:</span><span class="mi">57</span><span class="err">:</span><span class="mi">52</span><span class="n">Z</span><span class="w"> </span><span class="n">st</span><span class="o">-</span><span class="n">cea</span><span class="w"> </span><span class="err">$</span><span class="w"> </span>
+<span class="o">[</span><span class="n">Main</span><span class="o">]</span><span class="w"> </span>
+<span class="nl">fanout</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span>
+<span class="nl">connect_timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span>
+<span class="nl">command_timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+<span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span>
+<span class="nl">fd_max</span><span class="p">:</span><span class="w"> </span><span class="mi">16384</span><span class="w"> </span>
+<span class="nl">history_size</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span>
+<span class="nl">node_count</span><span class="p">:</span><span class="w"> </span><span class="n">yes</span><span class="w"> </span>
+<span class="nl">verbosity</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span>
+<span class="n">#ssh_user</span><span class="err">:</span><span class="w"> </span><span class="n">root</span><span class="w"> </span>
+<span class="n">#ssh_path</span><span class="err">:</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ssh</span><span class="w"> </span>
+<span class="n">#ssh_options</span><span class="err">:</span><span class="w"> </span><span class="o">-</span><span class="n">oStrictHostKeyChecking</span><span class="o">=</span><span class="k">no</span>
+</code></pre></div>
 
 <p>config and it changed as below :</p>
-<div class="highlight"><pre><span class="err">#</span><span class="x"> Configuration file for clush </span><span class="err">#</span><span class="x"> </span>
-<span class="err">#</span><span class="x"> Please see man clush.conf(5) </span><span class="err">#</span><span class="x"> </span>
-<span class="err">#</span><span class="x"> </span><span class="p">$</span><span class="nv">Id</span><span class="x">: clush.conf 463 2011-02-09 21:57:52Z st-cea </span><span class="p">$</span><span class="x"> </span>
-<span class="x">[Main] </span>
-<span class="x">fanout: 64 </span>
-<span class="x">connect_timeout: 15 </span>
-<span class="x">command_timeout: 0 </span>
-<span class="x">color: auto </span>
-<span class="x">fd_max: 16384 </span>
-<span class="x">history_size: 100 </span>
-<span class="x">node_count: yes </span>
-<span class="x">verbosity: 1 </span>
-<span class="x">ssh_user: root </span>
-<span class="cp">#</span><span class="nf">ssh_path</span><span class="x">: /usr/bin/ssh </span>
-<span class="cp">#</span><span class="nf">ssh_options</span><span class="x">: -oStrictHostKeyChecking=no</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Configuration</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">clush</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>
+<span class="err">#</span><span class="w"> </span><span class="n">Please</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">man</span><span class="w"> </span><span class="n">clush</span><span class="p">.</span><span class="n">conf</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>
+<span class="err">#</span><span class="w"> </span><span class="err">$</span><span class="nl">Id</span><span class="p">:</span><span class="w"> </span><span class="n">clush</span><span class="p">.</span><span class="n">conf</span><span class="w"> </span><span class="mi">463</span><span class="w"> </span><span class="mi">2011</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">09</span><span class="w"> </span><span class="mi">21</span><span class="err">:</span><span class="mi">57</span><span class="err">:</span><span class="mi">52</span><span class="n">Z</span><span class="w"> </span><span class="n">st</span><span class="o">-</span><span class="n">cea</span><span class="w"> </span><span class="err">$</span><span class="w"> </span>
+<span class="o">[</span><span class="n">Main</span><span class="o">]</span><span class="w"> </span>
+<span class="nl">fanout</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span>
+<span class="nl">connect_timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span>
+<span class="nl">command_timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+<span class="nl">color</span><span class="p">:</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span>
+<span class="nl">fd_max</span><span class="p">:</span><span class="w"> </span><span class="mi">16384</span><span class="w"> </span>
+<span class="nl">history_size</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span>
+<span class="nl">node_count</span><span class="p">:</span><span class="w"> </span><span class="n">yes</span><span class="w"> </span>
+<span class="nl">verbosity</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span>
+<span class="nl">ssh_user</span><span class="p">:</span><span class="w"> </span><span class="n">root</span><span class="w"> </span>
+<span class="n">#ssh_path</span><span class="err">:</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ssh</span><span class="w"> </span>
+<span class="n">#ssh_options</span><span class="err">:</span><span class="w"> </span><span class="o">-</span><span class="n">oStrictHostKeyChecking</span><span class="o">=</span><span class="k">no</span>
+</code></pre></div>
 
 <p>then:</p>
 <blockquote>
@@ -138,7 +145,7 @@ cat /etc/clustershell/clush.conf</p>
 </blockquote>
 <p>edit /etc/hosts:</p>
 <blockquote>
-<p>184.22.241.102 us2<br />
+<p>184.22.241.102 us2<br>
 184.82.244.17 us3</p>
 </blockquote>
 <p>add your ssh-key to us2,us3(if dont know,u can search online)</p>
@@ -147,30 +154,28 @@ cat /etc/clustershell/clush.conf</p>
 <p>clush -b -g us "uptime"</p>
 </blockquote>
 <p>screen:</p>
-<div class="highlight"><pre>---------------  
-us2
----------------
-07:43:04 up 269 days, 12:59, 0 users, load average: 0.24, 0.05, 0.02
----------------  
-us3
----------------  
-07:43:05 up 173 days, 12:18, 0 users, load average: 0.00, 0.00, 0.00
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">---------------</span><span class="w">  </span>
+<span class="n">us2</span>
+<span class="o">---------------</span>
+<span class="mi">07</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span><span class="mi">04</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="mi">269</span><span class="w"> </span><span class="n">days</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">average</span><span class="p">:</span><span class="w"> </span><span class="mf">0.24</span><span class="p">,</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"> </span><span class="mf">0.02</span>
+<span class="o">---------------</span><span class="w">  </span>
+<span class="n">us3</span>
+<span class="o">---------------</span><span class="w">  </span>
+<span class="mi">07</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span><span class="mi">05</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="mi">173</span><span class="w"> </span><span class="n">days</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">users</span><span class="p">,</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">average</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w"> </span><span class="mf">0.00</span>
+</code></pre></div>
 
-
-<p>PS:if u want to know more.the list would be help u.</p>
-<p>clustershell wiki : <a href="https://github.com/cea-hpc/clustershell/wiki">https://github.com/cea-hpc/clustershell/wiki</a><br />
+<p>clustershell wiki : <a href="https://github.com/cea-hpc/clustershell/wiki">https://github.com/cea-hpc/clustershell/wiki</a><br>
 clush : <a href="https://github.com/cea-hpc/clustershell/wiki/clush">https://github.com/cea-hpc/clustershell/wiki/clush</a></p>
             <section id="copyright">
             <center>
                 <div class="copyright">
                     版权声明：自由转载-非商用-非衍生-保持署名
                 </div>
-                <div class="donation">
+                <!--div class="donation">
                     <img src="/images/donation.png"/>
                     <br>
                     <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
-                </div>
+                </div-->
             </center>
             </section>
             <div class="hr"></div>

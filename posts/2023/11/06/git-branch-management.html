@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>Git分支管理 // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="http://weibo.com/shadowlg">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>一 06 十一月 2023</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Git分支管理</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/work.html">work</a> Tags:                                 <a class="post-category" href="/tag/git.html">Git</a>
+                        </p>
+                </header>
+            </section>
+            <h2>前言</h2>
+<p>创业公司早期没有严格的git管理规范，同时又有新同事的加入，对 git 分支的命名和管理方式有些许的模糊，因此重新进行了定义。</p>
+<h2>代码分支管理</h2>
+<p>项目代码分支为: master、release、feature 、hotfix 。</p>
+<ul>
+<li>master: 主分支，也称为线上分支，主要用来版本发布</li>
+<li>dev：日常开发分支</li>
+<li>release：预发版分支，大多数情况下和线上功能是一致的</li>
+<li>feature：具体的功能开发分支</li>
+<li>hotfix：线上bug修复分支</li>
+</ul>
+<h2>主分支：</h2>
+<p>主要包括master/release/dev三个分支</p>
+<p>master：</p>
+<blockquote>
+<p>预发环境测试完成后，把代码合并到master 分支，并由运维部署到生产环境。</p>
+</blockquote>
+<p>release：</p>
+<blockquote>
+<p>Release 分支 从 Master 检出，最终会合并到 Master。
+所有新增功能的开发分支都是从 Dev 检出作为本地分支，以 feature/姓名首字母简拼/功能名，当功能开发完毕的时候，将 feature 合并到 Dev，在测试或预生产环境进行部署，测试通过后，再将 feature合并到 Release。
+如果出现线上问题需要紧急修复，则从 Release 检出作为本地分支，以 hotfix/姓名首字母简拼/功能名， 当问题修复完毕的时候，将 hotfix合并到 Dev，测试通过后，再将 hotfix合并到 Release，在预发环境再次验证。
+待所有的测试和准备工作做完之后，我们就可以将 release 分支合并到 master 分支上，并择机进行线上发布。</p>
+</blockquote>
+<p>dev：</p>
+<blockquote>
+<p>dev 就是我们的日常开发分支。</p>
+</blockquote>
+<h2>辅助分支</h2>
+<p>feature：</p>
+<blockquote>
+<p>feature 分支用来开发具体的功能，一般 checkout自 Dev 分支，以 feature/姓名首字母简拼/功能名 进行命名，最终合并到 Dev 、Release 分支。比如我们要在下一个版本增加功能 1、功能 2、功能 3。那么我们就可以起三个 feature 分支：feature-abc-1，feature-def-2，feature-gjk-3。（公司目前基本是一个功能一个开发，也可以功能名/姓名）随着我们开发，功能 1 和功能 2 都被完成了，而功能 3 因为某些原因完成不了，那么最终前两分支将被合并到 Dev 分支，而第三个分支将延期继续进行本地开发工作，功能 1 和功能 2 测试完没有问题后，将 feature1 和 feature2 分支合并到 Release 分支，最终将 Release 分支合并到 Master 分支。</p>
+</blockquote>
+<p>hotfix：</p>
+<blockquote>
+<p>hotfix 分支用来修复线上 bug。当线上代码出现 bug 时，我们基于 Release 分支开一个 hotfix 分支，以 hotfix/功能名/姓名首字母简拼（例如：hotfix-model-base-zxz），修复 bug 之后再将 hotfix 分支合并到 Release 分支，同时 Dev 分支作为最新最全的代码分支，hotfix 分支也需要合并到 Dev 分支上去，同时在不同分支对应的不同环境进行 bug 回归验证，最终将 Release 分支合并到 Master 分支，进行线上发布。</p>
+</blockquote>
+<h2>关于Tag</h2>
+<ul>
+<li>为了保证生产回滚的可能性(由于某些情况导致生产发布失败，需要回滚)。每次发布生产需要生成对应的发布Tag。</li>
+</ul>
+<h2>代码分支提交与合并</h2>
+<ol>
+<li>代码提交前，必须拉取最新代码，防止冲突。
+  如果拉取代码后需要冲突，需要解决代码冲突后再进行提交</li>
+<li>代码合并
+  在本地合并，不允许在远端进行merge操作</li>
+</ol>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <!--div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div-->
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "nexrol"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

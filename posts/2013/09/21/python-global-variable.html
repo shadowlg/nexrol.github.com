@@ -22,6 +22,15 @@
             $(".content").fitVids();
         });
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 
 <body>
@@ -66,73 +75,65 @@
             <p>虽说简单，但有次写代码时候没注意，一不小心也浪费了我很多时间，现总结如下</p>
 <p>python全局变量的使用：
 case 1:</p>
-<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
+    <span class="nb">print</span> <span class="s2">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="mi">1</span>
-    <span class="k">print</span> <span class="s">&quot;test() b : &quot;</span> <span class="p">,</span> <span class="n">b</span> 
+    <span class="nb">print</span> <span class="s2">&quot;test() b : &quot;</span> <span class="p">,</span> <span class="n">b</span> 
 <span class="n">test</span><span class="p">()</span>
-<span class="k">print</span> <span class="s">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
-</pre></div>
-
+<span class="nb">print</span> <span class="s2">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
+</code></pre></div>
 
 <p>结果是: </p>
-<div class="highlight"><pre>test() a : 0
+<div class="highlight"><pre><span></span><code>test() a : 0
 test() b : 1 
 a : 0
-</pre></div>
-
+</code></pre></div>
 
 <p>case 2:</p>
-<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> 
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> 
 <span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
+    <span class="nb">print</span> <span class="s2">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> 
-    <span class="k">print</span> <span class="s">&quot;test() change a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
+    <span class="nb">print</span> <span class="s2">&quot;test() change a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
 <span class="n">test</span><span class="p">()</span> 
-<span class="k">print</span> <span class="s">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
-</pre></div>
-
+<span class="nb">print</span> <span class="s2">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
+</code></pre></div>
 
 <p>结果是: </p>
-<div class="highlight"><pre>会报错：UnboundLocalError: local variable &#39;a&#39; referenced before assignment
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">会报错：</span><span class="n">UnboundLocalError</span><span class="p">:</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="n">referenced</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="n">assignment</span>
+</code></pre></div>
 
 <p>结论（case 1，case 2）： 
 当内部变量与外部变量重名，并且要给变量赋值是不可行的。但是引用其值是可以的。
 case 3:</p>
-<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> 
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> 
 <span class="k">def</span> <span class="nf">test</span><span class="p">():</span> 
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> 
-    <span class="k">print</span> <span class="s">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
+    <span class="nb">print</span> <span class="s2">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
 <span class="n">test</span><span class="p">()</span> 
-<span class="k">print</span> <span class="s">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
-</pre></div>
-
+<span class="nb">print</span> <span class="s2">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
+</code></pre></div>
 
 <p>结果是: </p>
-<div class="highlight"><pre>test() a : 1 
+<div class="highlight"><pre><span></span><code>test() a : 1 
 a : 0
-</pre></div>
-
+</code></pre></div>
 
 <p>case 4 </p>
-<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> 
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> 
 <span class="k">def</span> <span class="nf">test</span><span class="p">():</span> 
     <span class="k">global</span> <span class="n">a</span> 
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> 
-    <span class="k">print</span> <span class="s">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
+    <span class="nb">print</span> <span class="s2">&quot;test() a : &quot;</span> <span class="p">,</span> <span class="n">a</span>
 <span class="n">test</span><span class="p">()</span> 
-<span class="k">print</span> <span class="s">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
-</pre></div>
-
+<span class="nb">print</span> <span class="s2">&quot;a : &quot;</span> <span class="p">,</span> <span class="n">a</span> 
+</code></pre></div>
 
 <p>结果是: </p>
-<div class="highlight"><pre>test() a : 1 
+<div class="highlight"><pre><span></span><code>test() a : 1 
 a : 1
-</pre></div>
-
+</code></pre></div>
 
 <p>结论(case 3, case4) : 
 当内部变量与外部变量重名，它们的操作是互不影响的。如果要统一变量，要在变量前加上global。</p>
@@ -141,11 +142,11 @@ a : 1
                 <div class="copyright">
                     版权声明：自由转载-非商用-非衍生-保持署名
                 </div>
-                <div class="donation">
+                <!--div class="donation">
                     <img src="/images/donation.png"/>
                     <br>
                     <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
-                </div>
+                </div-->
             </center>
             </section>
             <div class="hr"></div>
