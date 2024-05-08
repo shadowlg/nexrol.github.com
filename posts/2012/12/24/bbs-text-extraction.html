@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Z晓L's Blog, welcome to my nerverland">
+
+
+        <title>BBS主题正文内容抽取 // Z晓L's Blog // welcome to my nerverland</title>
+
+    <link href="/favicon.ico" rel="icon">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/solarized.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a863be43a9892c5549e62e4d9d19415";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="/author/nexrol.html" title="See posts by nexrol">
+                </a>
+                <h2 class="article-info">nexrol</h2>
+                <!--small class="about-author"></small-->
+                <p class="social">
+                        <a href="#">
+                            <i class="fa fa-github fa-lg"></i>
+                        </a>
+                        <a href="http://weibo.com/shadowlg">
+                            <i class="fa fa-weibo fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope fa-lg"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-rss-square fa-lg"></i>
+                        </a>
+                </p>
+                <h5>Published</h5>
+                <p>一 24 十二月 2012</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>BBS主题正文内容抽取</h1>
+                        <p class="post-meta">
+                        Category: <a class="post-category" href="/category/work.html">work</a> Tags:                                 <a class="post-category" href="/tag/python.html">python</a>
+                                <a class="post-category" href="/tag/work.html">work</a>
+                        </p>
+                </header>
+            </section>
+            <p>公司的业务需要从互联网中获取大量的新闻，博客，论坛，微博等文本进行分类，后续会进行个性化的广告投放。</p>
+<p>这其中我将其做个分类，三种类型：</p>
+<ol>
+<li>
+<p>新闻、博客主要是集中一大块文本，相对来说有现成的文本提取算法可以实现（我们也维护了一个庞大的正则或xpath库，匹配大量站点做兼容）；</p>
+</li>
+<li>
+<p>微博，因为是单一网站，可以通过接口或者模拟请求，也能够通过固定的正则，xpath等进行文本提取；</p>
+</li>
+<li>
+<p>论坛，不太一样的是可能会有多块的文本，楼主的帖子也不一定是正文最长，甚至有可能发帖在二楼，针对新闻的文本提取算法不适用于论坛。</p>
+</li>
+</ol>
+<p>当然，有的人还会说，论坛的场景还有各样，还是看需求，我们认为主题一定是在楼主，且后面的歪楼不算等，针对舆情或者广告类，不需要100%精确，量大配概率来实施。</p>
+<p>这里简单说下BBS内容提取算法流程介绍（支撑公司上百网站的抓取）</p>
+<p><strong>1 规范整理html（preTreatment_html）</strong> </p>
+<p>去除无用的结点（style，script，font，em等不影响结构的结点），这里使用tidylib进行的规整。</p>
+<p><strong>2 生成DOM树(soupparser.fromstring())</strong> </p>
+<p>用BeautifulSoup。</p>
+<p><strong>3遍历DOM树并找出相似结点(getSimilarNode)</strong> </p>
+<p>一般网页分块都是用div，table，所以遍历的时候只遍历这类结点，比较相似结点用到</p>
+<p>的方法：</p>
+<p>① equalNode </p>
+<p>比较结点属性及属性值是否相同，但href，style等不作比较，同时某些结点做相似度比</p>
+<p>较，相关方法有similarity</p>
+<p>② equalNodelayer </p>
+<p>深入层数的比较，layer默认为3层，即取当前结点的第一个子结点作为一层。</p>
+<p><strong>4 去噪(getNodeText)</strong> </p>
+<p>对取出的结点list做如下操作：</p>
+<p><strong>a</strong> 整理结点，标记图片位置，将img结点替换内容为对应图片链接。</p>
+<p><strong>b</strong> 将不包含文本内容的结点去除。</p>
+<p><strong>c</strong> 将共有的父节点去除（这里做下简单的判断，当子节点含有的文本内容占它父节点含有的文本内容百分比大于0.6时才执行此项操作）。</p>
+<p><strong>d</strong> 制定一些通用的规则，剔除多余的内容进行文本筛选。比如一般内容都包含有中文标点符号，judgecomma判断，仅为一个图片url的判断singleImg(因为可能为头像url或者广告url等等，一个难以判别，直接剔除)，还有一些是很大可能不属于正文内容但却是论坛独有内容的剔除，比如含有“注册时间”，“距离下一级还需”，“当前在线”，“当前离线”，“发帖”，“积分”等等，组合这些关键字来判别剔除。</p>
+<p><strong>5 筛选后的主要内容确定(getIntro)</strong> </p>
+<p>经过上面一系列的过滤后，textlist里的内容已不多，里面应该包含所需要取的，所以再做最后的处理。</p>
+<p>判断textlist的长度：</p>
+<p>①如果为0 ， 则使用新闻类页面抽取的算法来处理。 </p>
+<p>②如果为1 ， 则直接取当前的这一个文本作为最终结果。 </p>
+<p>③如果为2及以上，则对它们进行比较。一般取当中的3-4份文本，这里选择的参数是0.6，将每个文本与最长的文本相比得到百分比，如果超过当前设定的参数，则取它作为最终结果，否则取最长的文本内容作为最终结果。 </p>
+<p><strong>注意点与不足：</strong>
+⑴ 无回贴或者仅有一两个回帖的主题可能正确率会降低。</p>
+<p>⑵ 对于仅包含视频或者主题内容过少（仅有几个字）的帖子不适用。 </p>
+            <section id="copyright">
+            <center>
+                <div class="copyright">
+                    版权声明：自由转载-非商用-非衍生-保持署名
+                </div>
+                <!--div class="donation">
+                    <img src="/images/donation.png"/>
+                    <br>
+                    <strong> 如果你觉得我的文章或项目对你有所帮助, You can buy me a cup of coffee:) </strong>
+                </div-->
+            </center>
+            </section>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "nexrol"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; Z晓L's Blog &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
